@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>products</key>
+	<array>
+		<dict>
+			<key>productName</key>
+			<string>Product 1</string>
+			<key>price</key>
+			<real>1000</real>
+			<key>vendorName</key>
+			<string>Vendor 1</string>
+		</dict>
+		<dict>
+			<key>productName</key>
+			<string>Product 2</string>
+			<key>price</key>
+			<real>2000</real>
+			<key>vendorName</key>
+			<string>Vendor 2</string>
+		</dict>
+		<dict>
+			<key>productName</key>
+			<string>Product 3</string>
+			<key>price</key>
+			<real>3000</real>
+			<key>vendorName</key>
+			<string>Vendor 3</string>
+		</dict>
+		<dict>
+			<key>productName</key>
+			<string>Product 4</string>
+			<key>price</key>
+			<real>4000</real>
+			<key>vendorName</key>
+			<string>Vendor 4</string>
+		</dict>
+		<dict>
+			<key>productName</key>
+			<string>Product 5</string>
+			<key>price</key>
+			<real>5000</real>
+			<key>vendorName</key>
+			<string>Vendor 5</string>
+		</dict>
+		<dict>
+			<key>productName</key>
+			<string>Product 6</string>
+			<key>price</key>
+			<real>6000</real>
+			<key>vendorName</key>
+			<string>Vendor 6</string>
+		</dict>
+		<dict>
+			<key>productName</key>
+			<string>Product 7</string>
+			<key>price</key>
+			<real>7000</real>
+			<key>vendorName</key>
+			<string>Vendor 7</string>
+		</dict>
+		<dict>
+			<key>productName</key>
+			<string>Product 8</string>
+			<key>price</key>
+			<real>8000</real>
+			<key>vendorName</key>
+			<string>Vendor 8</string>
+		</dict>
+		<dict>
+			<key>productName</key>
+			<string>Product 9</string>
+			<key>price</key>
+			<real>9000</real>
+			<key>vendorName</key>
+			<string>Vendor 9</string>
+		</dict>
+		<dict>
+			<key>productName</key>
+			<string>Product 10</string>
+			<key>price</key>
+			<real>10000</real>
+			<key>vendorName</key>
+			<string>Vendor 10</string>
+		</dict>
+	</array>
+</dict>
+</plist>
