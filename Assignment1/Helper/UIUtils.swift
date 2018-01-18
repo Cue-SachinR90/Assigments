@@ -16,16 +16,20 @@ public class UIUtils{
         
         UIView.animate(withDuration: 0.250,
                        delay:0,
-            usingSpringWithDamping:0.5,
+            usingSpringWithDamping:0.1,
             initialSpringVelocity:0.1,
                          animations: {
                             sender.transform = CGAffineTransform(scaleX: 0.850, y: 0.850)
-        },
-                         completion: { finish in
-                             sender.transform = CGAffineTransform.identity
-                          completionHandler(finish)
+                         },completion: { finish in
+                            UIView.animate(withDuration: 0.250,
+                                           delay:0,
+                                           usingSpringWithDamping:0.1,
+                                           initialSpringVelocity:0.1,
+                                           animations: {
+                                            sender.transform = CGAffineTransform.identity
+                                           },
+                                           completion: completionHandler)
                             
-        
         })
     }
     
