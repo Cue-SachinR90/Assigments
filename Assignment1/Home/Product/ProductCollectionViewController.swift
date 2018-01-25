@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class ProductCollectionViewController: UICollectionViewController {
     var listOfProduct:[Product] = [Product]()
+    private var appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     @IBOutlet var productCollectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -18,7 +22,9 @@ class ProductCollectionViewController: UICollectionViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
+       
         //fetch product from the plist
+        
         fetchDataFromPList()
         
         //calculate the width of the collection view
@@ -38,27 +44,35 @@ class ProductCollectionViewController: UICollectionViewController {
     //MARK:- private methods
     
     /// this method is used to fetch array of dictionaries from the plist
+    
     private func fetchDataFromPList(){
-        //get url of the file where our product_list.plist is located
-        let url = Bundle.main.path(forResource: "product_list", ofType: "plist")
         
-        //get teh dictionary from the URL provided
-        let productPListDictionary = NSDictionary(contentsOfFile: url!) as? [String : Array<Dictionary<String, Any>>]
-        
-        //get arrays of dictionary for the key named  products
-        let arrayOfProducts = productPListDictionary!["products"]
-        
-        //remove all product from the plist 1st
-        listOfProduct.removeAll()
-        
-        //iterate all product from the dictionary and append to the or list of product
-        for item in arrayOfProducts! {
-            let product = Product()
-            product.name = item["productName"] as! String
-            product.vendorName = item["vendorName"] as! String
-            product.price = item["price"] as! Int
-            listOfProduct.append(product)
+        do{
+            listOfProduct = try context.fetch(Product.fetchRequest())
+        }catch let error as NSError{
+         fatalError("Unresolved Error \(error),\(error.userInfo)")
         }
+        
+//        //get url of the file where our product_list.plist is located
+//        let url = Bundle.main.path(forResource: "product_list", ofType: "plist")
+//
+//        //get teh dictionary from the URL provided
+//        let productPListDictionary = NSDictionary(contentsOfFile: url!) as? [String : Array<Dictionary<String, Any>>]
+//
+//        //get arrays of dictionary for the key named  products
+//        let arrayOfProducts = productPListDictionary!["products"]
+//
+//        //remove all product from the plist 1st
+//        listOfProduct.removeAll()
+//
+//        //iterate all product from the dictionary and append to the or list of product
+//        for item in arrayOfProducts! {
+//            let product = Products1()
+//            product.name = item["productName"] as! String
+//            product.vendorName = item["vendorName"] as! String
+//            product.price = item["price"] as! Int
+//            listOfProduct.append(product)
+//        }
     }
 
     /*
@@ -89,11 +103,11 @@ class ProductCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCollectionViewCell
             // Configure the cell
        
-            cell.productNameLabel.text = product.name
+            cell.productNameLabel.text = product.productName
         
             cell.vendorNameLabel.text = product.vendorName
         
-            cell.priceNameLabel.text = "\u{20B9} \(product.price)"
+            cell.priceNameLabel.text = "\u{20B9} \(product.productPrice)"
         
             cell.addToCartButtonCell.tag = indexPath.row
         
@@ -140,8 +154,9 @@ class ProductCollectionViewController: UICollectionViewController {
 }
 extension ProductCollectionViewController:AddToCartDelegate{
     func addToCart(index: Int) {
-        let product = listOfProduct[index]
-        //add to cart
-        (self.tabBarController as! HomeTabController).cartList.append(product)
+                let product = listOfProduct[index]
+        // TODO: add to cart
+                (self.tabBarController as! HomeTabController).cartList.append(product)
     }
 }
+

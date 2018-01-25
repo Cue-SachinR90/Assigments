@@ -16,15 +16,15 @@ public class UIUtils{
         
         UIView.animate(withDuration: 0.250,
                        delay:0,
-            usingSpringWithDamping:0.1,
-            initialSpringVelocity:0.1,
+            usingSpringWithDamping:0.3,
+            initialSpringVelocity:0.75,
                          animations: {
                             sender.transform = CGAffineTransform(scaleX: 0.850, y: 0.850)
                          },completion: { finish in
                             UIView.animate(withDuration: 0.250,
                                            delay:0,
-                                           usingSpringWithDamping:0.1,
-                                           initialSpringVelocity:0.1,
+                                           usingSpringWithDamping:0.3,
+                                           initialSpringVelocity:0.75,
                                            animations: {
                                             sender.transform = CGAffineTransform.identity
                                            },

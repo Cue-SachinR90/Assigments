@@ -26,6 +26,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         UIUtils.animateView(sender, completionHandler: { finish in
             self.addCartDelegate?.addToCart(index: sender.tag)
         })
+        addCartClosure?(sender.tag)
     }
     var addCartClosure :((Int) -> Void)?
 

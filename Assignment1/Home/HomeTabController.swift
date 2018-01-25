@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import CoreData
+
 //Home Screen Controllers
 class HomeTabController: UITabBarController {
-    
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
     var cartList = [Product]()
     func attachLogoutButton(title: String) {
         self.navigationItem.hidesBackButton = true
@@ -26,6 +29,11 @@ class HomeTabController: UITabBarController {
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBar.isHidden = false
         attachLogoutButton(title: "LogOut")
+        //clear first products data
+        deleteAllDataFromProducts(entity: "Product")
+        
+        //create Product Objects
+        genereateProductList()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +52,40 @@ class HomeTabController: UITabBarController {
         }, negativeButtonAction: nil)
     }
     
+    //MARK:- Metohds
     
+    private func deleteAllDataFromProducts(entity: String){
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        fetchRequest.returnsObjectsAsFaults = false
+        do
+        {
+            let results = try context.fetch(fetchRequest)
+            for managedObject in results
+            {
+                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                context.delete(managedObjectData)
+            }
+        } catch let error as NSError {
+            print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
+        }
+    }
+    
+    
+    func genereateProductList(){
+        var product : Product!
+        //create 10 products
+        
+        for i in 1...10{
+            product = Product(entity: Product.entity(), insertInto: context)
+            product.productID = Int16(i)
+            product.productName = "Product \(i)"
+            product.vendorName = "Vendor \(i)"
+            product.productPrice = Double(i * 1000)
+            product.vendorAddress = "Location \(i)"
+            appDelegate.saveContext()
+        }
+    }
     /*
     // MARK: - Navigation
 

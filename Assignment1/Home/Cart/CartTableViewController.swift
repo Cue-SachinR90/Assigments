@@ -25,8 +25,8 @@ class CartTableViewController: UITableViewController {
         
         homeTabBar = (self.tabBarController as! HomeTabController)
         
-        cartTableView.estimatedRowHeight = 150.0
-        cartTableView.rowHeight = 150.0
+        cartTableView.rowHeight = UITableViewAutomaticDimension
+                cartTableView.estimatedRowHeight = 150
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,9 +54,9 @@ class CartTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cartCell", for: indexPath) as! CartTableViewCell
         let product = homeTabBar!.cartList[indexPath.row]
-        cell.productNameLabel.text =  product.name
+        cell.productNameLabel.text =  product.productName
         cell.vendorNameLabel?.text = product.vendorName
-        cell.priceLabel?.text = "\u{20B9} \(product.price)"
+        cell.priceLabel?.text = "\u{20B9} \(product.productPrice)"
         cell.removeCartButton.tag = indexPath.row
         cell.removeCartDelegate = self
         return cell

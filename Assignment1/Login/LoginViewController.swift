@@ -21,6 +21,9 @@ class LoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBar.isHidden = true
+        
+        emailTextField.setLeftPadding(with: 20)
+        passwordTextField.setLeftPadding(with: 20)
     }
 
     override func didReceiveMemoryWarning() {
