@@ -13,31 +13,6 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-    //create PersistentContainer
-    lazy var persistentContainer:NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "AssignmentCoreData")
-        container.loadPersistentStores(completionHandler: {
-            (storeDescription, error) in
-            if let error = error as NSError?{
-                fatalError("Unresolved Error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-    
-    //MARK: METHODS
-    func saveContext(){
-        let context = persistentContainer.viewContext
-        if  context.hasChanges{
-            do{
-                try context.save()
-            }catch{
-                let error = error as NSError
-                fatalError("Unresolved Error \(error), \(error.userInfo)")
-            }
-        }
-    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

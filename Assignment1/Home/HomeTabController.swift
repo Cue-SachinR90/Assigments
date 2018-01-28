@@ -11,9 +11,8 @@ import CoreData
 
 //Home Screen Controllers
 class HomeTabController: UITabBarController {
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    private let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
-    var cartList = [Product]()
+    
+    var productDao:ProductDao = ProductDao()
     func attachLogoutButton(title: String) {
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: title,
@@ -30,7 +29,7 @@ class HomeTabController: UITabBarController {
         self.navigationController?.navigationBar.isHidden = false
         attachLogoutButton(title: "LogOut")
         //clear first products data
-        deleteAllDataFromProducts(entity: "Product")
+        productDao.deleteAllDataFromProducts()
         
         //create Product Objects
         genereateProductList()
@@ -54,46 +53,22 @@ class HomeTabController: UITabBarController {
     
     //MARK:- Metohds
     
-    private func deleteAllDataFromProducts(entity: String){
-        
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-        fetchRequest.returnsObjectsAsFaults = false
-        do
-        {
-            let results = try context.fetch(fetchRequest)
-            for managedObject in results
-            {
-                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
-                context.delete(managedObjectData)
-            }
-        } catch let error as NSError {
-            print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
-        }
-    }
-    
-    
     func genereateProductList(){
         var product : Product!
         //create 10 products
-        
+        let databaseManagerInstance = DatabaseManager.shared;
+        let context = databaseManagerInstance.context
         for i in 1...10{
-            product = Product(entity: Product.entity(), insertInto: context)
-            product.productID = Int16(i)
-            product.productName = "Product \(i)"
-            product.vendorName = "Vendor \(i)"
-            product.productPrice = Double(i * 1000)
-            product.vendorAddress = "Location \(i)"
-            appDelegate.saveContext()
+            let productName = "Product \(i)";
+            if productDao.fetchProductByName(productName) == nil{
+                product = Product(entity: Product.entity(), insertInto: context)
+                product.productname = "Product \(i)"
+                product.vendorname = "Vendor \(i)"
+                product.price = Double(i * 1000)
+                product.vendoraddress = "Location \(i)"
+                databaseManagerInstance.saveContext()
+            }
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

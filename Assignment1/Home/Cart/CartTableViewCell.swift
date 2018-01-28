@@ -14,6 +14,7 @@ class CartTableViewCell: UITableViewCell {
     @IBOutlet weak var vendorNameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var removeCartButton: UIButton!
+    @IBOutlet weak var quantity: UILabel!
     
     weak var removeCartDelegate: RemoveFromCarDelegate?
     

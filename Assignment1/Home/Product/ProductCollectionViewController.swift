@@ -11,21 +11,19 @@ import CoreData
 
 class ProductCollectionViewController: UICollectionViewController {
     var listOfProduct:[Product] = [Product]()
-    private var appDelegate = UIApplication.shared.delegate as! AppDelegate
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+    var cartDao = CartDao()
     @IBOutlet var productCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
-       
-        //fetch product from the plist
         
-        fetchDataFromPList()
+        
+        //fetch product from core data
+        
+        fetchData()
         
         //calculate the width of the collection view
         let width = (view.frame.size.width - 30) / 2
@@ -34,7 +32,7 @@ class ProductCollectionViewController: UICollectionViewController {
         let layout = productCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: height)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,120 +41,101 @@ class ProductCollectionViewController: UICollectionViewController {
     
     //MARK:- private methods
     
-    /// this method is used to fetch array of dictionaries from the plist
+    /// this method is used to fetch
     
-    private func fetchDataFromPList(){
+    private func fetchData(){
         
         do{
-            listOfProduct = try context.fetch(Product.fetchRequest())
+            listOfProduct = try DatabaseManager.shared.context.fetch(Product.fetchRequest())
         }catch let error as NSError{
-         fatalError("Unresolved Error \(error),\(error.userInfo)")
+            fatalError("Unresolved Error \(error),\(error.userInfo)")
         }
-        
-//        //get url of the file where our product_list.plist is located
-//        let url = Bundle.main.path(forResource: "product_list", ofType: "plist")
-//
-//        //get teh dictionary from the URL provided
-//        let productPListDictionary = NSDictionary(contentsOfFile: url!) as? [String : Array<Dictionary<String, Any>>]
-//
-//        //get arrays of dictionary for the key named  products
-//        let arrayOfProducts = productPListDictionary!["products"]
-//
-//        //remove all product from the plist 1st
-//        listOfProduct.removeAll()
-//
-//        //iterate all product from the dictionary and append to the or list of product
-//        for item in arrayOfProducts! {
-//            let product = Products1()
-//            product.name = item["productName"] as! String
-//            product.vendorName = item["vendorName"] as! String
-//            product.price = item["price"] as! Int
-//            listOfProduct.append(product)
-//        }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
-
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return listOfProduct.count
     }
-
+    
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let product = listOfProduct[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCollectionViewCell
-            // Configure the cell
-       
-            cell.productNameLabel.text = product.productName
+        // Configure the cell
         
-            cell.vendorNameLabel.text = product.vendorName
+        cell.productNameLabel.text = product.productname
         
-            cell.priceNameLabel.text = "\u{20B9} \(product.productPrice)"
+        cell.vendorNameLabel.text = product.vendorname
         
-            cell.addToCartButtonCell.tag = indexPath.row
+        cell.priceNameLabel.text = "\u{20B9} \(product.price)"
         
-            cell.addCartDelegate = self
+        cell.addToCartButtonCell.tag = indexPath.row
+        
+        cell.addCartDelegate = self
         
         return cell
     }
     
-    
+}
+extension ProductCollectionViewController:AddToCartDelegate{
+    func addToCart(index: Int) {
+        let product = listOfProduct[index]
+        // TODO: add to cart
+        if let cartItem = cartDao.fetchCartByName(product.productname!){// update cartquantity
+            let quantity = cartItem.quantity + 1 ;
+            cartDao.updateCartQuantity(cartItem.productname!, quantity)
+        }else{
+            //insert cart
+            let databaseManagerInstance = DatabaseManager.shared;
+            let context = databaseManagerInstance.context
+            let cartItem = Cart(entity: Cart.entity(), insertInto: context)
+            cartItem.productname =  product.productname!
+            cartItem.vendorname = product.vendorname!
+            cartItem.price = product.price
+            cartItem.vendoraddress = product.vendoraddress!
+            cartItem.quantity = 1
+            databaseManagerInstance.saveContext()
+        }
+    }
+}
+
+
 
 //    // MARK: UICollectionViewDelegate
 //    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //
 //    }
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
+/*
+ // Uncomment this method to specify if the specified item should be highlighted during tracking
+ override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+ return true
+ }
+ */
 
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
+/*
+ // Uncomment this method to specify if the specified item should be selected
+ override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+ return true
+ }
+ */
 
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
-}
-extension ProductCollectionViewController:AddToCartDelegate{
-    func addToCart(index: Int) {
-                let product = listOfProduct[index]
-        // TODO: add to cart
-                (self.tabBarController as! HomeTabController).cartList.append(product)
-    }
-}
-
+/*
+ // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+ override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+ return false
+ }
+ 
+ override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+ return false
+ }
+ 
+ override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+ 
+ }
+ */

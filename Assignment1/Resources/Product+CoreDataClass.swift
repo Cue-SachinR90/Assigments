@@ -2,7 +2,7 @@
 //  Product+CoreDataClass.swift
 //  Assignment1
 //
-//  Created by Sachin Rao on 23/01/18.
+//  Created by Sachin Nagraj Rao on 28/01/18.
 //  Copyright © 2018 Cuelogic Technologies. All rights reserved.
 //
 //

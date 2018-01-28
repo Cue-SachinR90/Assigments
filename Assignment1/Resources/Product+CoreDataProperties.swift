@@ -2,7 +2,7 @@
 //  Product+CoreDataProperties.swift
 //  Assignment1
 //
-//  Created by Sachin Rao on 23/01/18.
+//  Created by Sachin Nagraj Rao on 28/01/18.
 //  Copyright © 2018 Cuelogic Technologies. All rights reserved.
 //
 //
@@ -17,10 +17,11 @@ extension Product {
         return NSFetchRequest<Product>(entityName: "Product")
     }
 
-    @NSManaged public var productID: Int16
-    @NSManaged public var productName: String?
-    @NSManaged public var productPrice: Double
-    @NSManaged public var vendorAddress: String?
-    @NSManaged public var vendorName: String?
+    @NSManaged public var productname: String?
+    @NSManaged public var price: Double
+    @NSManaged public var vendoraddress: String?
+    @NSManaged public var vendorname: String?
+    @NSManaged public var productImg: String?
+    @NSManaged public var phoneNumber: String?
 
 }
