@@ -24,12 +24,12 @@
 		49C5D9772010C8C000C5E0BF /* RemoveFromCartDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5D9762010C8C000C5E0BF /* RemoveFromCartDelegate.swift */; };
 		49C5D9792010CB4900C5E0BF /* AddToCartDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5D9782010CB4900C5E0BF /* AddToCartDelegate.swift */; };
 		7297D003201E02AE00C8EF98 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7297D002201E02AE00C8EF98 /* DatabaseManager.swift */; };
-		7297D008201E05F200C8EF98 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7297D004201E05F200C8EF98 /* Product+CoreDataClass.swift */; };
-		7297D009201E05F200C8EF98 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7297D005201E05F200C8EF98 /* Product+CoreDataProperties.swift */; };
-		7297D00A201E05F200C8EF98 /* Cart+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7297D006201E05F200C8EF98 /* Cart+CoreDataClass.swift */; };
-		7297D00B201E05F200C8EF98 /* Cart+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7297D007201E05F200C8EF98 /* Cart+CoreDataProperties.swift */; };
 		7297D00E201E070000C8EF98 /* ProductDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7297D00D201E070000C8EF98 /* ProductDao.swift */; };
 		7297D010201E0BCB00C8EF98 /* CartDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7297D00F201E0BCB00C8EF98 /* CartDao.swift */; };
+		7297D015201E184B00C8EF98 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7297D011201E184B00C8EF98 /* Product+CoreDataClass.swift */; };
+		7297D016201E184B00C8EF98 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7297D012201E184B00C8EF98 /* Product+CoreDataProperties.swift */; };
+		7297D017201E184B00C8EF98 /* Cart+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7297D013201E184B00C8EF98 /* Cart+CoreDataClass.swift */; };
+		7297D018201E184B00C8EF98 /* Cart+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7297D014201E184B00C8EF98 /* Cart+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,12 +52,12 @@
 		49C5D9762010C8C000C5E0BF /* RemoveFromCartDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFromCartDelegate.swift; sourceTree = "<group>"; };
 		49C5D9782010CB4900C5E0BF /* AddToCartDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartDelegate.swift; sourceTree = "<group>"; };
 		7297D002201E02AE00C8EF98 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
-		7297D004201E05F200C8EF98 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
-		7297D005201E05F200C8EF98 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		7297D006201E05F200C8EF98 /* Cart+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cart+CoreDataClass.swift"; sourceTree = "<group>"; };
-		7297D007201E05F200C8EF98 /* Cart+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cart+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7297D00D201E070000C8EF98 /* ProductDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDao.swift; sourceTree = "<group>"; };
 		7297D00F201E0BCB00C8EF98 /* CartDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartDao.swift; sourceTree = "<group>"; };
+		7297D011201E184B00C8EF98 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7297D012201E184B00C8EF98 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7297D013201E184B00C8EF98 /* Cart+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cart+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7297D014201E184B00C8EF98 /* Cart+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cart+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,10 +143,10 @@
 		49A6A9B62015BC1D00B0EE57 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7297D004201E05F200C8EF98 /* Product+CoreDataClass.swift */,
-				7297D005201E05F200C8EF98 /* Product+CoreDataProperties.swift */,
-				7297D006201E05F200C8EF98 /* Cart+CoreDataClass.swift */,
-				7297D007201E05F200C8EF98 /* Cart+CoreDataProperties.swift */,
+				7297D011201E184B00C8EF98 /* Product+CoreDataClass.swift */,
+				7297D012201E184B00C8EF98 /* Product+CoreDataProperties.swift */,
+				7297D013201E184B00C8EF98 /* Cart+CoreDataClass.swift */,
+				7297D014201E184B00C8EF98 /* Cart+CoreDataProperties.swift */,
 				49A6A9BA2015BCD200B0EE57 /* AssignmentCoreData.xcdatamodeld */,
 			);
 			path = Resources;
@@ -272,20 +272,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				49C5D9772010C8C000C5E0BF /* RemoveFromCartDelegate.swift in Sources */,
-				7297D00A201E05F200C8EF98 /* Cart+CoreDataClass.swift in Sources */,
 				497A4924200F881000148EBF /* LoginViewController.swift in Sources */,
 				49C5D96F200FBB8C00C5E0BF /* CartTableViewController.swift in Sources */,
-				7297D008201E05F200C8EF98 /* Product+CoreDataClass.swift in Sources */,
 				7297D010201E0BCB00C8EF98 /* CartDao.swift in Sources */,
-				7297D00B201E05F200C8EF98 /* Cart+CoreDataProperties.swift in Sources */,
 				7297D003201E02AE00C8EF98 /* DatabaseManager.swift in Sources */,
-				7297D009201E05F200C8EF98 /* Product+CoreDataProperties.swift in Sources */,
 				49A6A9BC2015BCD200B0EE57 /* AssignmentCoreData.xcdatamodeld in Sources */,
 				49C5D97320109B2D00C5E0BF /* ProductCollectionViewCell.swift in Sources */,
 				49C5D9752010A29800C5E0BF /* CartTableViewCell.swift in Sources */,
+				7297D018201E184B00C8EF98 /* Cart+CoreDataProperties.swift in Sources */,
 				497A492A200F8D1100148EBF /* HomeTabController.swift in Sources */,
 				497A490D200F877D00148EBF /* AppDelegate.swift in Sources */,
 				497A492D200F917900148EBF /* UIUtils.swift in Sources */,
+				7297D017201E184B00C8EF98 /* Cart+CoreDataClass.swift in Sources */,
+				7297D016201E184B00C8EF98 /* Product+CoreDataProperties.swift in Sources */,
+				7297D015201E184B00C8EF98 /* Product+CoreDataClass.swift in Sources */,
 				49A6A9C82016048700B0EE57 /* Extensions.swift in Sources */,
 				49C5D9792010CB4900C5E0BF /* AddToCartDelegate.swift in Sources */,
 				7297D00E201E070000C8EF98 /* ProductDao.swift in Sources */,

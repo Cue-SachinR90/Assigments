@@ -64,7 +64,7 @@ class CartTableViewController: UITableViewController {
         let cartItem = cartList[indexPath.row]
         cell.productNameLabel.text =  cartItem.productname
         cell.vendorNameLabel?.text = cartItem.vendorname
-        cell.priceLabel?.text = "\u{20B9} \(cartItem.price)"
+        cell.priceLabel?.text = "\u{20B9} \(cartItem.total)"
         cell.quantity?.text = "\(cartItem.quantity)"
         cell.removeCartButton.tag = indexPath.row
         cell.removeCartDelegate = self

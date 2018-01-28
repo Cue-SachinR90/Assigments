@@ -33,7 +33,7 @@ public class CartDao{
         let managedContext = DatabaseManager.shared.context;
         let cartProduct =  fetchCartByName(name)
         cartProduct!.setValue(quantity, forKey: "quantity")
-        cartProduct!.setValue(((cartProduct?.price)! * Double(quantity)), forKey: "price")
+        cartProduct!.setValue(((cartProduct?.price)! * Double(quantity)), forKey: "total")
         do{
             try managedContext.save()
         }catch let error as NSError{

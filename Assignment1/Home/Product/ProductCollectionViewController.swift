@@ -98,6 +98,7 @@ extension ProductCollectionViewController:AddToCartDelegate{
             cartItem.productname =  product.productname!
             cartItem.vendorname = product.vendorname!
             cartItem.price = product.price
+            cartItem.total = product.price
             cartItem.vendoraddress = product.vendoraddress!
             cartItem.quantity = 1
             databaseManagerInstance.saveContext()
