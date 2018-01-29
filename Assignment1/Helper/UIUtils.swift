@@ -15,17 +15,17 @@ public class UIUtils{
     
     public static func animateView(_ sender:UIView, completionHandler:@escaping (Bool)->Void){
         
-        UIView.animate(withDuration: 0.300,
+        UIView.animate(withDuration: 0.250,
                        delay:0,
                        usingSpringWithDamping:0.3,
-                       initialSpringVelocity:0.75,
+                       initialSpringVelocity:0.5,
                        animations: {
                         sender.transform = CGAffineTransform(scaleX: 0.850, y: 0.850)
         },completion: { finish in
-            UIView.animate(withDuration: 300,
+            UIView.animate(withDuration: 0.250,
                            delay:0,
                            usingSpringWithDamping:0.3,
-                           initialSpringVelocity:0.75,
+                           initialSpringVelocity:0.5,
                            animations: {
                             sender.transform = CGAffineTransform.identity
             },
