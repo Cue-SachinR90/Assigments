@@ -8,28 +8,29 @@
 
 import Foundation
 import UIKit
+import SystemConfiguration
 
 public class UIUtils{
-    
+    private static var alert:UIAlertController?
     
     public static func animateView(_ sender:UIView, completionHandler:@escaping (Bool)->Void){
         
-        UIView.animate(withDuration: 0.250,
+        UIView.animate(withDuration: 0.300,
                        delay:0,
-            usingSpringWithDamping:0.3,
-            initialSpringVelocity:0.75,
-                         animations: {
-                            sender.transform = CGAffineTransform(scaleX: 0.850, y: 0.850)
-                         },completion: { finish in
-                            UIView.animate(withDuration: 0.250,
-                                           delay:0,
-                                           usingSpringWithDamping:0.3,
-                                           initialSpringVelocity:0.75,
-                                           animations: {
-                                            sender.transform = CGAffineTransform.identity
-                                           },
-                                           completion: completionHandler)
-                            
+                       usingSpringWithDamping:0.3,
+                       initialSpringVelocity:0.75,
+                       animations: {
+                        sender.transform = CGAffineTransform(scaleX: 0.850, y: 0.850)
+        },completion: { finish in
+            UIView.animate(withDuration: 300,
+                           delay:0,
+                           usingSpringWithDamping:0.3,
+                           initialSpringVelocity:0.75,
+                           animations: {
+                            sender.transform = CGAffineTransform.identity
+            },
+                           completion: completionHandler)
+            
         })
     }
     
@@ -49,7 +50,7 @@ public class UIUtils{
         context.present(alert, animated: true, completion: nil)
     }
     
-
+    
     /// This is a helper method to show the OK-Cancel AlertView to the user
     ///
     /// - Parameters:
@@ -71,11 +72,50 @@ public class UIUtils{
         
         let negativeAction=UIAlertAction(title: "\(negativeButtonText)", style: .cancel, handler: {
             action in
-         negativeButtonAction?()
+            negativeButtonAction?()
         })
         
         alert.addAction(positiveAction)
         alert.addAction(negativeAction)
         context.present(alert, animated: true, completion: nil)
+    }
+    
+    public static func showLoader(_ context: UIViewController, strTitle:String, strMessage:String) {
+        alert?.dismiss(animated: true, completion: nil)
+        alert = nil
+        alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.startAnimating()
+        alert?.view.addSubview(loadingIndicator)
+        context.present(alert!, animated: true, completion: nil)
+    }
+    
+    public static func hideLoader(){
+        alert?.dismiss(animated: true, completion: nil)
+        alert = nil
+    }
+    
+    public static func isConnectedToNetwork() -> Bool {
+        
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
+        
     }
 }

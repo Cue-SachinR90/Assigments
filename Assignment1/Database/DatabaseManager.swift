@@ -43,4 +43,10 @@ public class DatabaseManager{
             }
         }
     }
+    func reset(){
+        let context = persistentContainer.viewContext
+        if(context.hasChanges){
+            context.reset()
+        }
+    }
 }

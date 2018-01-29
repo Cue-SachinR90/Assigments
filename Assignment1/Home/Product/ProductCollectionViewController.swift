@@ -22,6 +22,8 @@ class ProductCollectionViewController: UICollectionViewController {
         
         
         //fetch product from core data
+        let parent = self.parent as! HomeTabController
+        parent.productFetchedDelegate = self
         
         fetchData()
         
@@ -47,6 +49,7 @@ class ProductCollectionViewController: UICollectionViewController {
         
         do{
             listOfProduct = try DatabaseManager.shared.context.fetch(Product.fetchRequest())
+            self.collectionView?.reloadData()
         }catch let error as NSError{
             fatalError("Unresolved Error \(error),\(error.userInfo)")
         }
@@ -83,7 +86,13 @@ class ProductCollectionViewController: UICollectionViewController {
     }
     
 }
-extension ProductCollectionViewController:AddToCartDelegate{
+extension ProductCollectionViewController:AddToCartDelegate,ProductFetchedDelegate {
+    func onProductFetch() {
+        DispatchQueue.main.async {
+           self.fetchData()
+        }
+    }
+    
     func addToCart(index: Int) {
         let product = listOfProduct[index]
         // TODO: add to cart

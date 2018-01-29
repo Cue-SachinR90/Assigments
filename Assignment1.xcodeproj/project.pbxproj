@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49708D2E201EF0760037AFEE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49708D2D201EF0760037AFEE /* NetworkManager.swift */; };
+		49708D30201EF3980037AFEE /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49708D2F201EF3980037AFEE /* ServiceProvider.swift */; };
+		49708D32201EFCC10037AFEE /* ProductResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49708D31201EFCC10037AFEE /* ProductResponse.swift */; };
+		49708D35201F36D40037AFEE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49708D34201F36D40037AFEE /* Constants.swift */; };
+		49708D37201F825D0037AFEE /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49708D36201F825D0037AFEE /* ProductModel.swift */; };
 		497A490D200F877D00148EBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497A490C200F877D00148EBF /* AppDelegate.swift */; };
 		497A4912200F877D00148EBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 497A4910200F877D00148EBF /* Main.storyboard */; };
 		497A4914200F877D00148EBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 497A4913200F877D00148EBF /* Assets.xcassets */; };
@@ -33,6 +38,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49708D2D201EF0760037AFEE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		49708D2F201EF3980037AFEE /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		49708D31201EFCC10037AFEE /* ProductResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponse.swift; sourceTree = "<group>"; };
+		49708D34201F36D40037AFEE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		49708D36201F825D0037AFEE /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		497A4909200F877D00148EBF /* Assignment1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		497A490C200F877D00148EBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		497A4911200F877D00148EBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -71,6 +81,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49708D2B201EEAE60037AFEE /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				49708D2D201EF0760037AFEE /* NetworkManager.swift */,
+				49708D2F201EF3980037AFEE /* ServiceProvider.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		49708D33201F36C70037AFEE /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				49708D34201F36D40037AFEE /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		497A4900200F877D00148EBF = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +117,8 @@
 		497A490B200F877D00148EBF /* Assignment1 */ = {
 			isa = PBXGroup;
 			children = (
+				49708D33201F36C70037AFEE /* Constants */,
+				49708D2B201EEAE60037AFEE /* Networking */,
 				7297D001201E029E00C8EF98 /* Database */,
 				49A6A9B62015BC1D00B0EE57 /* Resources */,
 				49C5D954200F9F5E00C5E0BF /* Models */,
@@ -156,6 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				49C5D955200F9F7B00C5E0BF /* product_list.plist */,
+				49708D31201EFCC10037AFEE /* ProductResponse.swift */,
+				49708D36201F825D0037AFEE /* ProductModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -277,12 +308,17 @@
 				7297D010201E0BCB00C8EF98 /* CartDao.swift in Sources */,
 				7297D003201E02AE00C8EF98 /* DatabaseManager.swift in Sources */,
 				49A6A9BC2015BCD200B0EE57 /* AssignmentCoreData.xcdatamodeld in Sources */,
+				49708D35201F36D40037AFEE /* Constants.swift in Sources */,
+				49708D37201F825D0037AFEE /* ProductModel.swift in Sources */,
 				49C5D97320109B2D00C5E0BF /* ProductCollectionViewCell.swift in Sources */,
 				49C5D9752010A29800C5E0BF /* CartTableViewCell.swift in Sources */,
 				7297D018201E184B00C8EF98 /* Cart+CoreDataProperties.swift in Sources */,
+				49708D30201EF3980037AFEE /* ServiceProvider.swift in Sources */,
 				497A492A200F8D1100148EBF /* HomeTabController.swift in Sources */,
 				497A490D200F877D00148EBF /* AppDelegate.swift in Sources */,
+				49708D32201EFCC10037AFEE /* ProductResponse.swift in Sources */,
 				497A492D200F917900148EBF /* UIUtils.swift in Sources */,
+				49708D2E201EF0760037AFEE /* NetworkManager.swift in Sources */,
 				7297D017201E184B00C8EF98 /* Cart+CoreDataClass.swift in Sources */,
 				7297D016201E184B00C8EF98 /* Product+CoreDataProperties.swift in Sources */,
 				7297D015201E184B00C8EF98 /* Product+CoreDataClass.swift in Sources */,
